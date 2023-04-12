@@ -35,14 +35,6 @@ Return the length of the list
 By default, the maximum length of an element is 40 characters. This number was chosen arbitrarily and can be edited by replacing the '40' in `#paddingSize 40`
 By default you can't use the character ∙. This can be changed by replacing `#paddingChar ∙` in the script.
 
-**Examples**
-
-Here is a random example of what you can do with arrays :
-https://github.com/JacobsThierry/TPT2-scripts/blob/main/testArray
-
-Here is a "real" script that use arrays. 
-This script is spoiling something in the end game, be advised : https://github.com/JacobsThierry/TPT2-scripts/blob/main/infDisabler
-
 **Tips**
 
 * Do not hesitate to chain multiple function on a single line. `myArray = {pop({append({createArray("a;b;c;d")},'e')}, 5)}` is perfectly valid.
