@@ -1,0 +1,18 @@
+wakeup()
+isTowerTesting()
+
+:import array
+
+
+#testing (isTowerTesting() & 0.0 < health(true))
+
+:local int i
+
+:local string mods
+mods = {createList("cat.power;evasion.basic;defense.daigoparry;regeneration.relative")}
+
+loop:
+disable.inf( {get(mods, i)} )
+i = (i+1)%{listLength(mods)}
+
+gotoif(loop, {testing})
