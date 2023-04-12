@@ -1,0 +1,56 @@
+#paddingSize 5
+#paddingChar ∙
+
+
+#createList(elems) {lua(\
+	function lpad(str, len, char)\
+    	if char == nil then char = ' ' end\
+    	return str .. string.rep(char, len - #str)\
+	end\
+	str = {elems} \
+    out = ""\
+	for word in string.gmatch(str, '([^;]+)') do\
+    	out = out .. lpad(word,{paddingSize},'{paddingChar}')\
+	end\
+    return '"' .. out .. '"'\
+	)}
+
+
+#padders {lua(return string.rep("{paddingChar}", {paddingSize}))}
+#multiPadders(len) { lua(return string.rep({padders}, {len}))}
+
+;Create an array. Can only be used in editor : you can't use it with strings made in game.
+;elems : a string of elements separated by a semicolon
+#createArray(elems) {createList({elems})}
+#array(elems) {createArray({elems})}
+
+;Create an empty array.
+;Can only be used in editor : you can't use it with a length calculated in game
+#createEmptyArray(length) {multiPadders({length})}
+
+;Return an element and everything to the right of it. Used internally.
+#_get(list, index) sub({list}, {paddingSize}*{index}, {paddingSize})
+
+;Return the element at index 'index' in 'list'
+#get(list, index) sub({_get({list},{index})},0, index({_get({list}, {index})}, '{paddingChar}', 0))
+
+;add padding to an element. Used internally
+#addPadding(elem) concat({elem}, sub("{padders}", 0, {paddingSize} - len({elem}) ))
+
+;Add an element at the end of the list.
+#append(list, elem) concat({list},  {addPadding({elem})})
+
+;Return the length of an array.
+#listLength(list) (len({list})/{paddingSize})
+#arrayLength(list) {listLength({list})}
+#length(list) {listLength({list})}
+
+;Remove the element at 'index'
+#pop(list, index) concat(sub({list}, 0, {paddingSize} * {index}),\
+				sub({list},  {paddingSize} * ({index} + 1),len({list})) )
+
+;Insert an element at index. Note : if index is greater than the size of the array,
+; the element will be added at the end of the list.
+#insert(list, elem, index) concat(concat(sub({list}, 0, {paddingSize}*{index}),\
+								{addPadding({elem})}),\
+								sub({list}, {paddingSize} * {index}, len({list}) ))
