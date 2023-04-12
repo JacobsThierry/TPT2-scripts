@@ -1,0 +1,47 @@
+wakeup()
+
+:import array
+
+:local string myArray
+:global string display
+:global bool isOk
+
+isOk = true
+
+myArray = {append({createArray("a;b;c;d")},'e')}
+
+isOk = isOk && myArray == {array("a;b;c;d;e")}
+
+myArray = {append(myArray,'f')}
+
+isOk = isOk && myArray == {array("a;b;c;d;e;f")}
+
+myArray = {pop(myArray, 0)}
+
+isOk = isOk && myArray == {array("b;c;d;e;f")}
+
+myArray = {pop(myArray, 2)}
+
+isOk = isOk && myArray == {array("b;c;e;f")}
+
+myArray = {insert(myArray, 'd', 2 )}
+
+isOk = isOk && myArray == {array("b;c;d;e;f")}
+
+myArray = {insert(myArray, 'a', 0 )}
+
+isOk = isOk && myArray == {array("a;b;c;d;e;f")}
+
+myArray = {insert(myArray, 'g', 6 )}
+
+isOk = isOk && myArray == {array("a;b;c;d;e;f;g")}
+
+myArray = {insert(myArray, 'g', 8 )}
+
+isOk = isOk && myArray == {array("a;b;c;d;e;f;g;g")}
+
+display = myArray ;expected : abcdefgg
+
+
+
+
