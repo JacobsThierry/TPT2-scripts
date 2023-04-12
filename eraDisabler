@@ -5,7 +5,7 @@
         
 elems = {array("fire;water;earth;air;nature;light;darkness;electricity;universal;neutral")}
 
-#elemslen 13
+
 loop:
 :local int i
 i = 0
@@ -13,6 +13,6 @@ i = 0
 loop12:
 disable.era({get(elems, i)})
 i = i+1
-gotoif(loop12, i < {elemslen})
+gotoif(loop12, i < {length(elems)})
 
 gotoif(loop, isTowerTesting() & (0.0 < health(true)))
