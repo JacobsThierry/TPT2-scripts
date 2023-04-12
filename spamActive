@@ -1,0 +1,37 @@
+:local int i
+:local int count
+
+:import modulesId
+
+isTowerTesting()
+
+count = active.count()
+wait(0.2)
+executesync("TE2.2:start")
+wait(0.5)
+
+#testing (isTowerTesting() & 0.0 < health(true))
+
+i = 0
+
+loop:
+i = (i + 1) % (count+1)
+
+
+gotoif(loop, ( (active.index({Recharge}) == i || active.index({SuperTower2}) == i )\
+					&& energy(true) > 0.33) ||\
+			active.index({KnightsBoostOfPower}) == i ||\
+            ((active.index({SimpleHeal}) == i || active.index({AdvancedHeal}) == i)\
+            && health(true) == 1.0 ) ||\
+            (active.index({TitaniumHull}) == i && energy(true) < 0.8 )\
+            )
+
+
+useinstant(i)
+useposition(i, vec(0.0, 0.0))
+
+gotoif(loop, {testing} )
+
+end:
+executesync("TE2.2:stop")
+wait(0.3)
