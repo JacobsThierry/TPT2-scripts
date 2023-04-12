@@ -1,6 +1,6 @@
 Hey hey,
 
-TPT2 ai script do not having a built in array system is a pain. I could'n find any array implementation, so I made one myself for d0sboots's editor ( https://d0sboots.github.io/perfect-tower/ ) using lua and macros.
+TPT2 ai script do not have a built in array system : it's a pain. I could'n find any array implementation, so I made one myself for d0sboots's editor ( https://d0sboots.github.io/perfect-tower/ ) using lua and macros.
 
 **How to use**
 Copy the code on top of your script or make a new file in the editor and add `:import array` on top of your script.
