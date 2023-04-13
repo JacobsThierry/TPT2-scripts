@@ -8,11 +8,10 @@ isTowerTesting()
 
 :local int i
 
-:local string mods
-mods = {createList("cat.power;evasion.basic;defense.daigoparry;regeneration.relative")}
+#mods {createList("cat.power;evasion.basic;defense.daigoparry;regeneration.relative")}
 
 loop:
-disable.inf( {get(mods, i)} )
-i = (i+1)%{listLength(mods)}
+disable.inf( {get({mods}, i)} )
+i = (i+1)%{listLength({mods})}
 
 gotoif(loop, {testing})
