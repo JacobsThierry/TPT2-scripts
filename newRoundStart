@@ -3,14 +3,11 @@ wakeup()
 isTowerTesting()
 :import array
 
-:local string scripts
 :local int i
-scripts = {array("tower:spamActive;tower:eraDisabler;tower:infDisabler")}
+#scripts {array("tower:spamActive;tower:eraDisabler;tower:infDisabler")}
 
-wait(0.5)
 loop:
 
-execute({get(scripts, i)})
+execute({get({scripts}, i)})
 i = i+1
-gotoif(loop, i < {length(scripts)})
-wait(2.0)
+gotoif(loop, i < {length({scripts})})
