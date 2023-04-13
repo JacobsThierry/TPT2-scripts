@@ -14,6 +14,10 @@ wait(0.5)
 
 i = 0
 
+:local double time
+
+time = now()
+
 loop:
 i = (i + 1) % (count+1)
 
@@ -23,7 +27,10 @@ gotoif(loop, ( (active.index({Recharge}) == i || active.index({SuperTower2}) == 
 			active.index({KnightsBoostOfPower}) == i ||\
             ((active.index({SimpleHeal}) == i || active.index({AdvancedHeal}) == i)\
             && health(true) == 1.0 ) ||\
-            (active.index({TitaniumHull}) == i && energy(true) < 0.8 )\
+            (active.index({TitaniumHull}) == i && energy(true) < 0.8 )||\
+            (active.index({Dispel}) == i && negative() == 0) ||\
+            (active.index({ImmortalityShield}) == i && shield(true) < 1.0 &&\
+            	(d2i( ((now() - time)/10000000.0) * time.scale() )%20) != 4 )\
             )
 
 
